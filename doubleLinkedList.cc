@@ -75,7 +75,7 @@ bool append (doublyLinkedList** head, doublyLinkedList** tail, int key)     //O(
     return true;
 }
 
-bool insertAfter (doublyLinkedList** head, doublyLinkedList** tail, int key, int keyPrev)   //O(N)
+bool insertAfter (doublyLinkedList** head, doublyLinkedList** tail, int key, int keyPrev)   //O(1)** folded over the O(N) of search()
 {
     if ((*tail) -> value == keyPrev)        // if we are appending to the tail indirectly
     {
@@ -103,7 +103,7 @@ bool insertAfter (doublyLinkedList** head, doublyLinkedList** tail, int key, int
     return false;
 }
 
-bool insertBefore (doublyLinkedList** head, doublyLinkedList** tail, int key, int keyNext)
+bool insertBefore (doublyLinkedList** head, doublyLinkedList** tail, int key, int keyNext) // O(1) folded over O(N) of search()
 {
     if ((*head) -> value == keyNext)        // if we are pushing a value to the head indirectly
     {
@@ -198,127 +198,125 @@ int main (void)
     printf ("\nWelcome to the simulator for a Doubly-Linked List\n");
     printf ("------------------------------------------\n");
 
-    redo: 
-    printf ("Choose out of the options below :: \n");
-    printf ("1. For inserting an element into the Doubly-Linked List\n");
-    printf ("2. For deleting an element from the Doubly-Linked List\n");
-    printf ("3. For displaying the Doubly-Linked List\n");
-    printf ("4. For searching a certain element in the Doubly-Linked List\n");
-    printf ("Your choice is : ");
-    scanf("%d", &choice);
-    printf("\n");
+    int chc = 1;
+    while (chc == 1)
+    { 
+        printf ("Choose out of the options below :: \n");
+        printf ("1. For inserting an element into the Doubly-Linked List\n");
+        printf ("2. For deleting an element from the Doubly-Linked List\n");
+        printf ("3. For displaying the Doubly-Linked List\n");
+        printf ("4. For searching a certain element in the Doubly-Linked List\n");
+        printf ("Your choice is : ");
+        scanf("%d", &choice);
+        printf("\n");
 
-    switch (choice)
-    {
-        case 1 :
+        switch (choice)
         {
-            int subChoice = 0;
-
-            printf ("1.  To insert a node at the head, i.e., push a node.\n");
-            printf ("2.  To insert an element after any element.\n");
-            printf ("3.  To insert an element before any element.\n");
-            printf ("4.  To insert an element at the end of the Linked List.\n");
-
-            scanf ("%d", &subChoice);
-
-            switch (subChoice) 
+            case 1 :
             {
-                case 1 :
+                int subChoice = 0;
+
+                printf ("1.  To insert a node at the head, i.e., push a node.\n");
+                printf ("2.  To insert an element after any element.\n");
+                printf ("3.  To insert an element before any element.\n");
+                printf ("4.  To insert an element at the end of the Linked List.\n");
+
+                scanf ("%d", &subChoice);
+
+                switch (subChoice) 
                 {
-                    printf ("Enter the value of the node you want to push onto the head :: ");
-                    scanf ("%d", &key);
+                    case 1 :
+                    {
+                        printf ("Enter the value of the node you want to push onto the head :: ");
+                        scanf ("%d", &key);
 
-                    if (push (&head, &tail, key))          printf ("\nVALUE = %d pushed onto the head\n", key);
-                    else                                   printf ("\nERROR. FAILURE\n");
+                        if (push (&head, &tail, key))          printf ("\nVALUE = %d pushed onto the head\n", key);
+                        else                                   printf ("\nERROR. FAILURE\n");
 
-                    break;
+                        break;
+                    }
+                
+                    case 2 :
+                    {   
+                        printf ("Enter the value of the node you want input :: ");
+                        scanf ("%d", &key);
+
+                        printf ("Enter the value of the node you want to enter it after :: ");
+                        scanf ("%d", &keyPrev);
+
+                        if (insertAfter (&head, &tail, key, keyPrev))           printf ("\nVALUE = %d inserted\n", key);
+                        else                                                    printf ("\nERROR. FAILURE\n");
+                        
+                        break;
+                    }
+
+                    case 3 :
+                    {
+                        printf ("Enter the value of the node you want input :: ");
+                        scanf ("%d", &key);
+
+                        printf ("Enter the value of the node you want to enter it before :: ");
+                        scanf ("%d", &keyNext);
+
+                        if (insertBefore (&head, &tail, key, keyNext))          printf ("\nVALUE = %d inserted\n", key);
+                        else                                                    printf ("\nERROR. FAILURE\n");                    
+                        
+                        break;
+                    }
+
+                    case 4 :
+                    {
+                        printf ("Enter the value of the node you want to append to the tail :: ");
+                        scanf ("%d", &key);
+
+                        if (append (&head, &tail, key))          printf ("\nVALUE = %d appended to the tail\n", key);
+                        else                                     printf ("\nERROR. FAILURE\n");
+
+                        break; 
+                    }
                 }
-            
-                case 2 :
-                {   
-                    printf ("Enter the value of the node you want input :: ");
-                    scanf ("%d", &key);
 
-                    printf ("Enter the value of the node you want to enter it after :: ");
-                    scanf ("%d", &keyPrev);
-
-                    if (insertAfter (&head, &tail, key, keyPrev))           printf ("\nVALUE = %d inserted\n", key);
-                    else                                                    printf ("\nERROR. FAILURE\n");
-                    
-                    break;
-                }
-
-                case 3 :
-                {
-                    printf ("Enter the value of the node you want input :: ");
-                    scanf ("%d", &key);
-
-                    printf ("Enter the value of the node you want to enter it before :: ");
-                    scanf ("%d", &keyNext);
-
-                    if (insertBefore (&head, &tail, key, keyNext))          printf ("\nVALUE = %d inserted\n", key);
-                    else                                                    printf ("\nERROR. FAILURE\n");                    
-                    
-                    break;
-                }
-
-                case 4 :
-                {
-                    printf ("Enter the value of the node you want to append to the tail :: ");
-                    scanf ("%d", &key);
-
-                    if (append (&head, &tail, key))          printf ("\nVALUE = %d appended to the tail\n", key);
-                    else                                     printf ("\nERROR. FAILURE\n");
-
-                    break; 
-                }
+                break;
             }
 
-            break;
+            case 2 :
+            {
+                int key = 0;
+                printf ("Enter the value of the node you want to delete :: ");
+                scanf ("%d", &key);
+
+                if (deleteNode (&head, &tail, key))            printf ("\nVALUE = %d deleted\n", key);
+                else                                           printf ("\nERROR. FAILURE\n");
+                break;
+            }
+
+            case 3 :
+            {
+                printf ("\nThe Doubly - Linked list is :: ");
+                if (!printDLL (head))                           printf ("\nLIST IS EMPTY!\n");
+                break;
+            }
+
+            case 4 :
+            {
+                int key = 0;
+                printf ("Enter the value of the node you want to search :: ");
+                scanf ("%d", &key);
+                
+                doublyLinkedList* node = search (head, key);
+                break;
+            }
+            default :
+            {
+                printf ("\nWrong choice!\n");
+                break;
+            }
         }
 
-        case 2 :
-        {
-            int key = 0;
-            printf ("Enter the value of the node you want to delete :: ");
-            scanf ("%d", &key);
+        printf("\n\n");
 
-            if (deleteNode (&head, &tail, key))            printf ("\nVALUE = %d deleted\n", key);
-            else                                           printf ("\nERROR. FAILURE\n");
-            break;
-        }
-
-        case 3 :
-        {
-            printf ("\nThe Doubly - Linked list is :: ");
-            if (!printDLL (head))                           printf ("\nLIST IS EMPTY!\n");
-            break;
-        }
-
-        case 4 :
-        {
-            int key = 0;
-            printf ("Enter the value of the node you want to search :: ");
-            scanf ("%d", &key);
-            
-            doublyLinkedList* node = search (head, key);
-            break;
-        }
-        default :
-        {
-            printf ("\nWrong choice!\n");
-            break;
-        }
-    }
-
-    printf("\n\n");
-
-    printf ("\nDo you want to continue (1) or exit (0) :: ");
-    scanf ("%d", &choice);
-
-    if (choice == 1)
-    {
-        goto redo;
+        printf ("\nDo you want to continue (1) or exit (0) :: ");
+        scanf ("%d", &chc);
     }
 
     return EXIT_SUCCESS;
