@@ -85,61 +85,62 @@ int main (void)
     int top = -1;
     int choice = -1;
 
-    redo :   
-
-    printf ("\nPlease enter your choice regarding what operation you want to perform\n");
-    printf ("1. Push a value onto the stack\n");
-    printf ("2. Pop a value from the top of the stack\n");
-    printf ("3. Peek the top value of stack\n");
-    printf ("4. Print the stack\n");
-    printf ("Your choice :: ");
-    scanf ("%d", &choice);
-
-    switch (choice)
+    int chc = 1;
+    while (chc == 1)
     {
-        case 1 :
+        printf ("\nPlease enter your choice regarding what operation you want to perform\n");
+        printf ("1. Push a value onto the stack\n");
+        printf ("2. Pop a value from the top of the stack\n");
+        printf ("3. Peek the top value of stack\n");
+        printf ("4. Print the stack\n");
+        printf ("Your choice :: ");
+        scanf ("%d", &choice);
+
+        switch (choice)
         {
-            int value = 0;
-            printf ("\nEnter the value you want to push onto the stack top :: ");
-            scanf ("%d", &value);
+            case 1 :
+            {
+                int value = 0;
+                printf ("\nEnter the value you want to push onto the stack top :: ");
+                scanf ("%d", &value);
 
-            if (push (stack, stackSize, value, &top))       printf ("\nVALUE = %d pushed\n", value);
-            else                                            printf ("\nFAILURE\n");
+                if (push (stack, stackSize, value, &top))       printf ("\nVALUE = %d pushed\n", value);
+                else                                            printf ("\nFAILURE\n");
 
-            break;
+                break;
+            }
+
+            case 2 :
+            {
+                int valPopped = pop (stack, stackSize, &top);
+
+                if (valPopped >= 0)     printf ("\nVALUE = %d popped\n", valPopped);
+                else                    printf ("\nFAILURE\n");
+
+                break;
+            }
+
+            case 3 :
+            {
+                peek (stack, &top);
+                break;
+            }
+            case 4 :
+            {
+                printf ("\nThe stack is :: \n\n\n");
+                printStack (stack, &top);
+                break;            
+            }
+            default :
+            {
+                printf ("\nWrong choice\n");
+                exit (EXIT_FAILURE);            
+            }
         }
 
-        case 2 :
-        {
-            int valPopped = pop (stack, stackSize, &top);
-
-            if (valPopped >= 0)     printf ("\nVALUE = %d popped\n", valPopped);
-            else                    printf ("\nFAILURE\n");
-
-            break;
-        }
-
-        case 3 :
-        {
-            peek (stack, &top);
-            break;
-        }
-        case 4 :
-        {
-            printf ("\nThe stack is :: \n\n\n");
-            printStack (stack, &top);
-            break;            
-        }
-        default :
-        {
-            printf ("\nWrong choice\n");
-            exit (EXIT_FAILURE);            
-        }
+        printf ("\nDo you want to continue ? Press (1) to continue :: ");
+        scanf ("%d", &chc);
     }
 
-    printf ("\nDo you want to continue ? Press (1) to continue :: ");
-    scanf ("%d", &choice);
-
-    if (choice == 1)    goto redo;
     return EXIT_SUCCESS;
 }

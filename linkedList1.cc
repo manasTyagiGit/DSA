@@ -135,103 +135,102 @@ int main (void)
     printf ("\nWelcome to the simulator for a Linked List\n");
     printf ("------------------------------------------\n");
 
-    redo: 
-    printf ("Choose out of the options below :: \n");
-    printf ("1. For inserting an element into the Linked List\n");
-    printf ("2. For deleting an element from the Linked List\n");
-    printf ("3. For displaying the Linked List\n");
-    printf ("4. For searching a certain element in the Linked List\n");
-    printf ("Your choice is : ");
-    scanf("%d", &choice);
-    printf("\n");
+    int chc = 1;
 
-    switch (choice)
-    {
-        case 1 :
+    while (chc == 1)
+    { 
+        printf ("Choose out of the options below :: \n");
+        printf ("1. For inserting an element into the Linked List\n");
+        printf ("2. For deleting an element from the Linked List\n");
+        printf ("3. For displaying the Linked List\n");
+        printf ("4. For searching a certain element in the Linked List\n");
+        printf ("Your choice is : ");
+        scanf("%d", &choice);
+        printf("\n");
+
+        switch (choice)
         {
-            int subChoice = 0;
-
-            printf ("To insert a node at the head, i.e., push a node, press 1.\n");
-            printf ("To insert an element after any element, press 2.\n");
-            printf ("To insert an element at the end of the Linked List, press 3.\n");
-
-            scanf ("%d", &subChoice);
-
-            switch (subChoice)
+            case 1 :
             {
-                case 1 :                  
-                   
-                    printf ("Enter the value of the node you want to push onto the head :: ");
-                    scanf ("%d", &key);
+                int subChoice = 0;
 
-                    push (&head, key);
-                    break;
-                
-                case 2 :
+                printf ("To insert a node at the head, i.e., push a node, press 1.\n");
+                printf ("To insert an element after any element, press 2.\n");
+                printf ("To insert an element at the end of the Linked List, press 3.\n");
 
-                    printf ("Enter the value of the node you want to input :: ");
-                    scanf ("%d", &key);
+                scanf ("%d", &subChoice);
+
+                switch (subChoice)
+                {
+                    case 1 :                  
                     
-                    printf ("Enter the value of the node you want to enter it after :: ");
-                    scanf ("%d", &keyPred);
+                        printf ("Enter the value of the node you want to push onto the head :: ");
+                        scanf ("%d", &key);
 
-                    insertAfter (&head, key, keyPred);
-                    break;
+                        push (&head, key);
+                        break;
+                    
+                    case 2 :
+
+                        printf ("Enter the value of the node you want to input :: ");
+                        scanf ("%d", &key);
+                        
+                        printf ("Enter the value of the node you want to enter it after :: ");
+                        scanf ("%d", &keyPred);
+
+                        insertAfter (&head, key, keyPred);
+                        break;
+                    
+                    case 3 :
+
+                        printf ("Enter the value of the node you want to input :: ");
+                        scanf ("%d", &key);
+
+                        append (&head, key);
+                        break;
+                    
+                    default :
+                        printf ("\nWrong choice\n");
+                        break;
+                }            
+                break;
+            }
+
+            case 2 :
+            {
+                printf ("Enter the value of the node you want to delete :: ");
+                scanf ("%d", &key);
+
+                deleteNode (&head, key);
+                break;
+            }
+
+            case 3 :
+            {
+                printf("\nThe linked list is :: ");
+                print (head);
+                printf("\n");
+                break;
+            }
+
+            case 4 :
+            {
+                printf ("Enter the value of the node you want to search :: ");
+                scanf ("%d", &key);
                 
-                case 3 :
-
-                    printf ("Enter the value of the node you want to input :: ");
-                    scanf ("%d", &key);
-
-                    append (&head, key);
-                    break;
-                
-                default :
-                    printf ("\nWrong choice\n");
-                    break;
-            }            
-            break;
+                linkedList* node = search (head, key);
+                break;
+            }
+            default :
+            {
+                printf ("\nNot defined. ERROR!\n");
+            }
         }
 
-        case 2 :
-        {
-            printf ("Enter the value of the node you want to delete :: ");
-            scanf ("%d", &key);
+        printf("\n\n");
 
-            deleteNode (&head, key);
-            break;
-        }
-
-        case 3 :
-        {
-            printf("\nThe linked list is :: ");
-            print (head);
-            printf("\n");
-            break;
-        }
-
-        case 4 :
-        {
-            printf ("Enter the value of the node you want to search :: ");
-            scanf ("%d", &key);
-            
-            linkedList* node = search (head, key);
-            break;
-        }
-        default :
-        {
-            printf ("\nNot defined. ERROR!\n");
-        }
-    }
-
-    printf("\n\n");
-
-    printf ("\nDo you want to continue (1) or exit (0) :: ");
-    scanf ("%d", &choice);
-
-    if (choice == 1)
-    {
-        goto redo;
+        printf ("\nDo you want to continue (1) or exit (0) :: ");
+        scanf ("%d", &chc);
     }
 
     return EXIT_SUCCESS;
