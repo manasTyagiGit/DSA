@@ -75,76 +75,74 @@ int main (void)
     int rear   = -1, front = 0;
     int* queue = (int*) calloc (queueSize, sizeof(int));
 
-    redo :
-
-    printf ("\nPlease enter your choice regarding what operation you want to perform\n");
-    printf ("1. Enqueue a value into the queue rear\n");
-    printf ("2. Dequeue a value from the front of the queue\n");
-    printf ("3. Print the rear value of the queue\n");
-    printf ("4. Print the front value of the queue\n");
-    printf ("5. Print the entire queue\n");
-    printf ("Your choice :: ");
-    scanf ("%d", &choice);
-
-    switch (choice)
+    int chc = 1;
+    while (chc == 1)
     {
-        case 1 :
-        {
-            int key = 0;
-            printf ("\nEnter the value you want to enqueue to the rear of the queue :: ");
-            scanf("%d", &key);
 
-            if (enqueue (queue, queueSize, &rear, key))                 printf ("\nVALUE = %d enqueued\n", key);
-            else                                                        printf ("\nFAILURE. QUEUE may be full\n");
-            
-            break;
+        printf ("\nPlease enter your choice regarding what operation you want to perform\n");
+        printf ("1. Enqueue a value into the queue rear\n");
+        printf ("2. Dequeue a value from the front of the queue\n");
+        printf ("3. Print the rear value of the queue\n");
+        printf ("4. Print the front value of the queue\n");
+        printf ("5. Print the entire queue\n");
+        printf ("Your choice :: ");
+        scanf ("%d", &choice);
+
+        switch (choice)
+        {
+            case 1 :
+            {
+                int key = 0;
+                printf ("\nEnter the value you want to enqueue to the rear of the queue :: ");
+                scanf("%d", &key);
+
+                if (enqueue (queue, queueSize, &rear, key))                 printf ("\nVALUE = %d enqueued\n", key);
+                else                                                        printf ("\nFAILURE. QUEUE may be full\n");
+                
+                break;
+            }
+
+            case 2 :
+            {
+                if (dequeue (queue, queueSize, &front, &rear))              printf ("\nSUCCESS\n");
+                else                                                        printf ("\nFAILURE. QUEUE may be empty\n");
+
+                break;
+            }
+
+            case 3 :
+            {
+                if (peekRear (queue, &rear));
+                else                            printf ("\nFAILURE. QUEUE may be empty\n");
+                break;   
+            }
+
+            case 4 :
+            {
+                if (peekFront (queue, &front, &rear));
+                else                             printf ("\nFAILURE. QUEUE may be empty\n");                            
+                break;
+            }
+
+            case 5 :
+            {
+                printf ("\nThe queue is :: \n");
+                printQueue (queue, &front, &rear);
+
+                break;
+            }
+            default :
+            {
+                printf ("\nNot defined. ERROR!\n");
+                break;
+            }
         }
 
-        case 2 :
-        {
-            if (dequeue (queue, queueSize, &front, &rear))              printf ("\nSUCCESS\n");
-            else                                                        printf ("\nFAILURE. QUEUE may be empty\n");
+        printf("\n\n");
 
-            break;
-        }
-
-        case 3 :
-        {
-            if (peekRear (queue, &rear));
-            else                            printf ("\nFAILURE. QUEUE may be empty\n");
-            break;   
-        }
-
-        case 4 :
-        {
-            if (peekFront (queue, &front, &rear));
-            else                             printf ("\nFAILURE. QUEUE may be empty\n");                            
-            break;
-        }
-
-        case 5 :
-        {
-            printf ("\nThe queue is :: \n");
-            printQueue (queue, &front, &rear);
-
-            break;
-        }
-        default :
-        {
-            printf ("\nNot defined. ERROR!\n");
-            break;
-        }
-    }
-
-    printf("\n\n");
-
-    printf ("\nDo you want to continue (1) or exit (0) :: ");
-    scanf ("%d", &choice);
-
-    if (choice == 1)
-    {
-        goto redo;
-    }   
+        printf ("\nDo you want to continue (1) or exit (0) :: ");
+        scanf ("%d", &chc);
+    }  
 
     return EXIT_SUCCESS;    
 }
