@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Recursive Binary Search function
+
 int binarySearch (int arr[], int low, int high, int key)
 {
     if (low > high)             return -1;
