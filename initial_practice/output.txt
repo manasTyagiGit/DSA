@@ -1,0 +1,6 @@
+1 : 2
+2 : 2
+3 : 2
+4 : 0
+12 : 1
+Element with max frequency is :: 1 : 2 times
