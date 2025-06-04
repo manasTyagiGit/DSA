@@ -7,9 +7,9 @@ int euclid1 (int u, int v)
 
     while (v != 0)
     {
-        temp = u % v;
-        u = v;
-        v = temp;
+        temp = u % v;       // calculate the reaminder
+        u = v;              // make u the bigger number, for ease of operations
+        v = temp;           // use the remainder as the other number, i.e, 'v'
     }
 
     return u;
