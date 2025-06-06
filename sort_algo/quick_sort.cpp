@@ -12,9 +12,39 @@ void print (int arr[], int n)
     cout << arr[n - 1] << endl;
 }
 
-void quick_sort (int arr[], int n)
+void swap (int* a, int* b)
 {
-    return;
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition (int arr[], int low, int high)
+{
+    int pivot = arr[low];
+    int i = low, j = high;
+
+    while (i < j)
+    {
+        while (arr[i] <= pivot && i <= high - 1)        i++;
+        while (arr[j] > pivot && j >= low + 1)          j--;
+
+        if (i < j)                                      swap (&arr[i], &arr[j]);
+    }   
+
+    swap (&arr[low], &arr[j]);
+    return j;
+}
+
+void quick_sort (int arr[], int low, int high)
+{
+    if (low < high) {
+
+        int pivot = partition (arr, low, high);
+
+        quick_sort (arr, low, pivot - 1);
+        quick_sort (arr, pivot + 1, high);
+    }
 }
 
 int main (void)
@@ -34,7 +64,7 @@ int main (void)
 
     print (arr, n);
 
-    quick_sort (arr, n);
+    quick_sort (arr, 0, n - 1);
 
     cout << "After sorting: ";
 
