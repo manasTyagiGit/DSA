@@ -21,8 +21,8 @@ void swap (int* a, int* b)
 
 int partition (int arr[], int low, int high)
 {
-    int pivot = arr[low];
-    int i = low, j = high;
+    int pivot = arr[low];                       // Non-randomized pivot at the lowest position
+    int i = low, j = high;                      // setting the end point iterators
 
     while (i < j)
     {
