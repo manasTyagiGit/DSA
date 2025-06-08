@@ -21,29 +21,34 @@ void swap (int* a, int* b)
 
 int partition (int arr[], int low, int high)
 {
-    int pivot = arr[low];                       // Non-randomized pivot at the lowest position
-    int i = low, j = high;                      // setting the end point iterators
+    int pivot = low;
+
+    int i = low, j = high;
 
     while (i < j)
     {
-        while (arr[i] <= pivot && i <= high - 1)        i++;
-        while (arr[j] > pivot && j >= low + 1)          j--;
+        while (i < high && arr[i] <= arr[pivot])     i++;
+        while (j > low && arr[j] > arr[pivot])       j--;
 
-        if (i < j)                                      swap (&arr[i], &arr[j]);
-    }   
+        if (i < j)
+        {
+            swap (&arr[i], &arr[j]);
+        }
+    }
 
-    swap (&arr[low], &arr[j]);
+    swap (&arr[j], &arr[pivot]);
+
     return j;
 }
 
 void quick_sort (int arr[], int low, int high)
 {
-    if (low < high) {
+    if (low < high)
+    {
+        int p_idx = partition (arr, low, high);
 
-        int pivot = partition (arr, low, high);
-
-        quick_sort (arr, low, pivot - 1);
-        quick_sort (arr, pivot + 1, high);
+        quick_sort (arr, low, p_idx - 1);
+        quick_sort (arr, p_idx + 1, high);
     }
 }
 
