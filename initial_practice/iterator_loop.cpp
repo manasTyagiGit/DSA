@@ -17,10 +17,20 @@ int main(void)
         cout << *(it) << endl;
     }
 
-    for (auto it : v)
+    for (auto it : v)                   // creates a copy, does not change original
     {
         cout << it << endl;
     }
+
+    for (auto& it : v)                  // changes the original
+    {
+        it = it * 2;
+    }
+
+    for (const auto& it : v){           // read only for-each loop
+        cout << it << endl;
+    }
+
 
     return EXIT_SUCCESS;
 }
