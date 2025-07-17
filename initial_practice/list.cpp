@@ -4,6 +4,10 @@ using namespace std;
 /**
  * A list provides front and back operations more naturally
  * It is maintained as a Double linked list
+ * 
+ * Even though insert() operations are faster than a vector, but a vector
+ * provides O(1) random access, and is more cache-friendly, so generally
+ * a vector is faster than a list in programming
 */
 
 void print (list<int> ls)

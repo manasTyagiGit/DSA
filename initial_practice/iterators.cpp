@@ -21,5 +21,11 @@ int main(void)
 
     cout << it3 << endl;
 
+    vector <int> :: reverse_iterator rev_it1 = v.rend();
+    vector <int> :: reverse_iterator rev_it2 = v.rbegin();
+    
+    cout << "Reverse end iterator :: " << *(rev_it1) << endl;
+    cout << "Reverse begin :: " << *(rev_it2) << endl;
+
     return EXIT_SUCCESS;
 }

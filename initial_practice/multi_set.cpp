@@ -2,6 +2,7 @@
 using namespace std;
 
 // A multiset can contain duplicates, but follows a sorted order
+// An unordered_set stores unique elements but not in a sorted order, it is generally fastest O(1) for all
 
 void print (multiset <int> s)
 {
