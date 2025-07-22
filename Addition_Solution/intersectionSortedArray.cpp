@@ -39,14 +39,53 @@ vector <int> find_inter (vector<int>& num1, vector<int>& num2)
     return ret;
 }
 
+vector<int> find_inter_optimized (vector<int>& num1, vector <int>& num2)
+{
+    vector<int> ret;
+
+    /**
+     * This opitmized runs on a two pointer approach based on the fact
+     * that the two input vectors/arrays are sorted,
+     * so we can compare their true value/altitude with each
+     * other, just like in merge sort
+     */
+
+    int i = 0;
+    int j = 0;
+
+    int size1 = num1.size();
+    int size2 = num2.size();
+
+    while (i < size1 && j < size2)
+    {
+        if (num1[i] == num2[j])
+        {
+            ret.emplace_back (num1[i]);     // matches
+            i++;
+            j++;
+        }
+
+        else if (num1[i] < num2[j])         // num1 < num2 at i, j
+            i++;
+        
+        else                                // num2 < num1 at i, j
+            j++;
+
+    }
+
+    return ret;
+}
+
 int main (void)
 {
-    vector <int> num1 = {1, 2, 2, 3, 4, 4, 5, 7};
-    vector <int> num2 = {2, 3, 4, 6, 7, 8};
+    vector <int> num1 = {21, 31, 42, 54, 71, 71, 81};
+    vector <int> num2 = {11, 21, 31, 41, 41, 41, 56, 71, 71, 81, 96, 101};
 
-    cout << "Answer should be :: 2, 3, 4, 7" << endl; 
+    cout << "Answer should be :: 21, 31, 71, 71, 81" << endl; 
 
-    vector <int> inter_res = find_inter (num1, num2);
+    //vector <int> inter_res = find_inter (num1, num2);
+
+    vector<int> inter_res = find_inter_optimized (num1, num2);
 
     print (inter_res);
 
