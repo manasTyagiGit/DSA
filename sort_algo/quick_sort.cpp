@@ -21,7 +21,7 @@ void swap (int* a, int* b)
 
 int partition (int arr[], int low, int high)
 {
-    int pivot = low;
+    int pivot = low;            // This should be randomized for worst case
 
     int i = low, j = high;
 
