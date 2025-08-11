@@ -33,6 +33,15 @@ int main (void)
 
     vector <int> v4 (v2);               // copies contents from v2 to v4, but different reference
 
+    // Another way of accessing values is via iterators
+
+    vector<int> :: iterator x = v3.begin();
+
+    for (int i = 0; i < v3.size(); i++)
+    {
+        cout << "\nValue at index : " << i << " = " << *(x + i) << "\n"; 
+    }
+
     cout << endl;
     return EXIT_SUCCESS;
 }
