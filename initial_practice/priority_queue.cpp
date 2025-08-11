@@ -21,7 +21,7 @@ int main (void)
 
     // Or a min-heap priority queue:
 
-    priority_queue <int, vector<int>, greater<int>> pq_min;         // min-healp, sorted PQ
+    priority_queue <int, vector<int>, greater<int>> pq_min;         // min-heap, sorted PQ
 
     pq_min.push(16);
     pq_min.push (32);
