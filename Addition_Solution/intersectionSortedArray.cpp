@@ -32,7 +32,7 @@ vector <int> find_inter (vector<int>& num1, vector<int>& num2)
                 visited[j] = 1;
                 break;                
             }
-        if (num2[j] > num1[i])      break;
+            if (num2[j] > num1[i])      break;
         }
     }
 
@@ -83,9 +83,9 @@ int main (void)
 
     cout << "Answer should be :: 21, 31, 71, 71, 81" << endl; 
 
-    //vector <int> inter_res = find_inter (num1, num2);
+    vector <int> inter_res = find_inter (num1, num2);
 
-    vector<int> inter_res = find_inter_optimized (num1, num2);
+    //vector<int> inter_res = find_inter_optimized (num1, num2);
 
     print (inter_res);
 
