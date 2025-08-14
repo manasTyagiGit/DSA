@@ -12,6 +12,10 @@ public:
 
         // The below solution works, but looks like a brute
         // force solution, even though, it is an O(N) T.C.
+
+        // There are other solutions too, one which I almost
+        // thought of via 2-ptr, let us see after waking up
+        // Sign off 1:15 AM, August 15, 2025.
         vector<int> ret;
         int sz = nums.size();
         int pos_idx = 0;
