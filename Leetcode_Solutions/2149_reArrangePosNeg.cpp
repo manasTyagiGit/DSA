@@ -4,18 +4,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> rearrangeArray(vector<int>& nums) {
-
-        // I want to do this via two pointer approach first,
-        // and if I am unable to do, I will see the solution,
-        // and Raj's video. 12:52 am August 15.
+    vector<int> rearrangeArray_uneven(vector<int>& nums) {
 
         // The below solution works, but looks like a brute
         // force solution, even though, it is an O(N) T.C.
+        // But it will work even if there are un-equal number
+        // of positive numbers, and negative numbers
 
-        // There are other solutions too, one which I almost
-        // thought of via 2-ptr, let us see after waking up
-        // Sign off 1:15 AM, August 15, 2025.
+     
         vector<int> ret;
         int sz = nums.size();
         int pos_idx = 0;
@@ -30,14 +26,67 @@ public:
             else                    pos.emplace_back (nums[i]);
         }
 
-        sz = sz / 2;
+        int neg_sz = neg.size();
+        int pos_sz = pos.size();
 
-        for (int i = 0; i < sz; i++)
+        if (neg_sz > pos_sz)                        // when no. of negs > no. of pos
         {
-            ret.emplace_back (pos[i]);
-            ret.emplace_back (neg[i]);
+            for (int i = 0; i < pos_sz; i++)
+            {
+                ret.push_back (pos[i]);
+                ret.push_back (neg[i]);
+            }
+
+            for (int i = pos_sz; i < neg_sz; i++)
+            {
+                ret.push_back(neg[i]);
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < neg_sz; i++)        // when no. of pos >= no. of negs
+            {
+                ret.push_back (pos[i]);
+                ret.push_back (neg[i]);
+            }
+
+            for (int i = neg_sz; i < pos_sz; i++)
+            {
+                ret.push_back(pos[i]);
+            }
         }
 
         return ret;
     }
+
+
+    // We are using the assumption contraint that the array is
+    // containing exactly same number of negs, and pos
+
+    vector<int> rearrangeArray_even(vector<int>& nums) {
+        int sz = nums.size();
+
+        vector<int> ret(sz);
+        int pos_idx = 0;
+        int neg_idx = 1;
+
+        for (int i = 0; i < sz; i++)
+        {
+            if (nums[i] > 0)
+            {
+                ret[pos_idx] = nums[i];
+                pos_idx += 2;
+            }
+
+            else
+            {
+                ret[neg_idx] = nums[i];
+                neg_idx += 2;
+            }
+        }
+
+        return ret;
+    }
+
 };
