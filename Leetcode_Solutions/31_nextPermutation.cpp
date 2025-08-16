@@ -49,7 +49,7 @@ public:
             }
         }
 
-        reverse (nums.begin() + breakpoint + 1, nums.end()) ;       // clever sort way, can also use sort())
+        reverse (nums.begin() + breakpoint + 1, nums.end()) ;       // clever sort way, can also use sort()
 
     }
 };
