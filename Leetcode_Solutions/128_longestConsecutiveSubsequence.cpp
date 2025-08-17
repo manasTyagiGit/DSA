@@ -36,4 +36,39 @@ public:
         return max_len;
 
     }
+
+    int longestConsecutive_Set(vector<int>& nums) {
+        int sz = nums.size();
+
+        if (sz <= 1)                return sz;
+
+        unordered_set <int> st;
+        int max_len = 1;
+
+        for (auto x : nums)
+        {
+            st.insert (x);
+        }
+
+        for (auto y : st)
+        {
+            if (st.find(y - 1) == st.end())
+            {
+                int cur_len = 1;
+                int x = y;
+
+                while (st.find(x + 1) != st.end())
+                {
+                    x++;
+                    cur_len++;
+                }
+                
+                max_len = max(max_len, cur_len);
+
+            }
+        }
+
+        return max_len;
+
+    }
 };
