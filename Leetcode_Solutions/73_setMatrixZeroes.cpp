@@ -93,6 +93,61 @@ void setMatrixZeroesBetter (int m, int n, vector <vector <int>>& mat)
     }
 }
 
+void setMatrixZeroesBest (int m, int n, vector<vector<int>>& mat)
+{
+    int col0 = 1;
+
+    //  vector <int> row (m, 0);        -> this can be mat[0...n][0]
+    //  vector <int> col (n, 0);        -> this can be mat[0][0...m]
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (mat[i][j] == 0)
+            {
+                mat[i][0] = 0;
+
+                if (j != 0)
+                {
+                    mat[0][j] = 0;
+                }
+                else
+                {
+                    col0 = 0;
+                }
+            }
+        }
+    }
+
+    for (int i = 1; i < m; i++)
+    {
+        for (int j = 1; j < n; j++)
+        {
+            if (mat[0][j] == 0 || mat[i][0] == 0)
+            {
+                mat[i][j] = 0;
+            }
+        }
+    }
+
+    if (mat[0][0] == 0)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            mat[0][j] = 0;
+        }
+    }
+
+    if (col0 == 0)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            mat[i][0] = 0;
+        }
+    }
+}
+
 
 int main (void)
 {
@@ -115,7 +170,8 @@ int main (void)
     cout << "\n After setting Zeroes\n";
     //  setMatrixZeroesBrute (x, y, v);
 
-    setMatrixZeroesBetter (x, y, v);
+    //  setMatrixZeroesBetter (x, y, v);
+    setMatrixZeroesBest (x, y, v);
 
     printMatrix (x,y, v);
 }
