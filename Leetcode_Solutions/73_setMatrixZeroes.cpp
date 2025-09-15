@@ -96,6 +96,9 @@ void setMatrixZeroesBetter (int m, int n, vector <vector <int>>& mat)
 void setMatrixZeroesBest (int m, int n, vector<vector<int>>& mat)
 {
     int col0 = 1;
+    //  int m = mat.size();
+    //  int n = mat[0].size();
+
 
     //  vector <int> row (m, 0);        -> this can be mat[0...n][0]
     //  vector <int> col (n, 0);        -> this can be mat[0][0...m]
