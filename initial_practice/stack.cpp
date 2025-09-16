@@ -45,5 +45,12 @@ int main (void)
     cout << "Size of s :: ";
     cout << s.size() << endl;
 
+    cout << "Set before top addition" << endl;
+    print (swapper);
+
+    cout << "Set after top addition" << endl;
+    swapper.top() += 15;
+    print (swapper);
+
     return EXIT_SUCCESS;
 }

@@ -9,7 +9,7 @@ int main (void)
     v1.push_back (0);
     v1.emplace_back (1);        //faster, but same usage
 
-    cout << v1[0] << " " << v1[1] << endl;
+    cout << v1[0] << " " << v1.at(1) << endl;
 
     vector <pair <int, int>> vector_pair;
     vector_pair.push_back ({1, 2});

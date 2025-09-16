@@ -27,16 +27,16 @@ int partition (int arr[], int low, int high)
 
     while (i < j)
     {
-        while (i < high && arr[i] <= arr[pivot])     i++;
-        while (j > low && arr[j] > arr[pivot])       j--;
+        while (i < high && arr[i] <= arr[pivot])     i++;           // first element on left greater than pivot
+        while (j > low && arr[j] > arr[pivot])       j--;           // first element on right smaller than or equal to pivot
 
-        if (i < j)
-        {
+        if (i < j)                  // check boundary condition
+        {   
             swap (&arr[i], &arr[j]);
         }
     }
 
-    swap (&arr[j], &arr[pivot]);
+    swap (&arr[j], &arr[pivot]);            // swap the last smaller element with pivot, last 'j'
 
     return j;
 }
