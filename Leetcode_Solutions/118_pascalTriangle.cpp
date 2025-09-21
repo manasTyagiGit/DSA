@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> generate3ms(int numRows) {
+    vector<vector<int>> generate3ms(int numRows) {                  // same intuition but, slightly more runtime due to new vector creation
         vector<vector<int>> ans = {{1}, {1,1}};
 
         if (numRows == 1)       return {{1}};
@@ -32,10 +32,10 @@ public:
 
         for (int i = 0; i < numRows; i++)
         {
-            ans.push_back(vector<int> (i + 1, 1));
+            ans.push_back(vector<int> (i + 1, 1));                  // pushes a vector of size = i+1, all elements = 1
         }      
 
-        for (int i = 2; i < numRows; i++)
+        for (int i = 2; i < numRows; i++)                           // only change 3rd row onwards, and middle elements
         {            
             for (int j = 1; j < i; j++)
             {                
