@@ -111,8 +111,6 @@ vector <vector <int>> best_solution (vector <int> arr, int target)
         }
     }
 
-
-
     return result;
 }
 
