@@ -9,16 +9,17 @@ int lengthSubArray (vector <int> arr)
     int curLen = 0;
 
     map <int, int> mp;
+    mp[0] = -1;                 // can also use a base entry like this
 
     for (int i = 0; i < sz; i++)
     {
         curSum += arr[i];
-        if (curSum == 0)
-        {
-            len = max (i + 1, curLen);
-        }
+        // if (curSum == 0)
+        // {
+        //     len = max (i + 1, curLen);
+        // }
 
-        else if (mp.find(curSum) != mp.end())            // curSum found
+        if (mp.find(curSum) != mp.end())            // curSum found
         {
             curLen = i - mp[curSum];
             len = max (len, curLen);
