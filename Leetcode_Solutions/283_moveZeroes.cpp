@@ -31,16 +31,16 @@ public:
 // This is what everyone teaches as two pointer approach
 
 void moveZeroes(vector<int>& nums) {
-        int i = 0;
-        int j = 0;
+    int i = 0;
+    int j = 0;
 
-        while (j < nums.size())
+    while (j < nums.size())
+    {
+        if (nums[j] != 0)
         {
-            if (nums[j] != 0)
-            {
-                swap (nums[j], nums[i]);
-                i += 1;
-            }
-            j += 1;
+            swap (nums[j], nums[i]);
+            i += 1;
         }
+        j += 1;
     }
+}
