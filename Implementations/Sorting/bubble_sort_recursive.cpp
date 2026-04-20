@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/**
+ * Bubble sort works via picking the largest element and then putting it at the largest available index
+ * Hence we start creating bubbles of sorted, and unsorted I guess, I could be wrong here though as to
+ * what 'BUBBLE' means. We do subsequent swaps until the element is at its place
+ */
+
+void print_array (int arr[], int len)
+{
+    for (int i = 0; i < len - 1; i++)
+    {
+        cout << arr[i] << ", ";
+    }
+
+    cout << arr[len - 1];
+
+    cout << endl;
+}
+
+void bubble_sort (int arr[], int len)
+{
+    if (len <= 1)       return;
+
+    int max_idx = 0;
+    for (int i = 0; i < len; i++)
+    {
+        if (arr[i] > arr[max_idx])
+        {
+            max_idx = i;
+        }
+    }
+
+    swap (arr[max_idx], arr[len - 1]);
+
+    bubble_sort(arr, len - 1);
+}
+
+int main ()
+{
+    int len = 0;
+    cout << "Enter size of your array :: ";
+    cin >> len;
+
+    int arr[len];
+    cout << "Enter your array :: " << endl;
+
+    for (int i = 0; i < len; i++)
+    {
+        cin >> arr[i];
+    }
+
+    cout << "Array is :: ";
+    print_array (arr, len);
+
+    cout << "Sorted array is :: ";
+    bubble_sort(arr, len);
+
+    print_array (arr, len);
+
+    return EXIT_SUCCESS;
+}
