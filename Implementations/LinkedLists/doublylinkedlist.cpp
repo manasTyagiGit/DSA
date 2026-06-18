@@ -125,7 +125,104 @@ DLL* insertAtPosition(DLL* list)
 
 DLL* deleteAtHead (DLL* list)
 {
-    
+    if ((list -> size) == 0){
+        cout << "The list is already empty" << endl;
+        return list;
+    }
+
+    Node* tbd = list -> head;
+
+    if ((list -> size) == 1){
+        list -> head = nullptr;
+        list -> tail = nullptr;
+    }
+
+    else{
+        Node* newHead = tbd -> next;
+
+        newHead -> prev = nullptr;
+        tbd -> next = nullptr;
+
+        list -> head = newHead;
+    }
+
+    list -> size -= 1;
+    delete tbd;    
+
+    return list;
+}
+
+DLL* deleteAtEnd (DLL* list)
+{
+    if ((list -> size) == 0)
+    {
+        cout << "List is already empty" << endl;
+        return list;
+    }
+
+    Node* tbd = list -> tail;
+
+    if ((list -> size) == 1)
+    {
+        list -> head = nullptr;
+        list -> tail = nullptr;        
+    }
+
+    else{
+        Node* newTail = tbd -> prev;
+        newTail -> next = nullptr;
+
+        tbd -> prev = nullptr;
+        list -> tail = newTail;
+    }
+
+    delete tbd;
+
+    list -> size -= 1;
+
+    return list;
+}
+
+DLL* deleteByPosition (DLL* list)
+{
+    int position = 0;
+    cout << "Enter position to be deleted :: ";
+    cin >> position;
+
+    if (position == 0 || position == 1)             return deleteAtHead(list);
+    if (position == (list -> size))                 return deleteAtEnd(list);
+
+    if (position < 0){
+        cout << "Negative positions do not exist" << endl;
+        return list;
+    }
+
+    if (position > (list -> size)){
+        cout << "List is too small for that deletion" << endl;
+        return list;
+    }
+
+    Node* tbd = list -> head;
+
+    while (position != 1)
+    {
+        tbd = tbd -> next;
+        position -= 1;
+    }
+
+    Node* pre = tbd -> prev;
+
+    pre -> next = tbd -> next;
+    tbd -> next -> prev = pre;
+
+    tbd -> prev = nullptr;
+    tbd -> next = nullptr;
+
+    delete tbd;
+
+    list -> size -= 1;
+
+    return list;
 }
 
 int main(void)
@@ -166,12 +263,12 @@ int main(void)
             case 5:
                 myList = deleteAtHead(myList);
                 break;
-            // case 6:
-            //     myList = deleteAtEnd(myList);
-            //     break;
-            // case 7:
-            //     myList = deleteByPosition(myList);
-            //     break;
+            case 6:
+                myList = deleteAtEnd(myList);
+                break;
+            case 7:
+                myList = deleteByPosition(myList);
+                break;
             default:
                 cout << "Wrong choice entered, please re-enter\n";
                 break;
