@@ -80,6 +80,54 @@ DLL* insertAtTail (DLL* list)
     return list;
 }
 
+DLL* insertAtPosition(DLL* list)
+{
+    int position = 0;
+    cout << "Enter the position you want to enter the value at :: ";
+    cin >> position;
+
+    if (position > (list -> size) + 1)
+    {
+        cout << "Position not available, list too small for that" << endl;
+        return list;
+    }
+
+    if (position < 0)
+    {
+        cout << "No such position exists" << endl;
+        return list;
+    }
+
+    if (position == 0 || position == 1)                 return insertAtHead(list);
+    if (position == (list -> size) + 1)                 return insertAtTail(list);
+
+    int value = 0;
+    cout << "Enter value you want to enter :: ";
+    cin >> value;
+
+    Node* iter = list -> head;
+    while (position != 1)
+    {
+        iter = iter -> next;
+        position -= 1;
+    }
+
+    Node* newNode = new Node(value);
+    newNode -> next = iter;
+    newNode -> prev = iter -> prev;
+    iter -> prev = newNode;
+    newNode -> prev -> next = newNode;
+
+    list -> size += 1;
+
+    return list;
+}
+
+DLL* deleteAtHead (DLL* list)
+{
+    
+}
+
 int main(void)
 {
     DLL* myList = new DLL();
@@ -109,15 +157,15 @@ int main(void)
             case 2:
                 myList = insertAtTail(myList);
                 break;
-            // case 3:
-            //     myList = insertAtPosition(myList);
-            //     break;
-            // case 4:
-            //     printLinkedList(myList);
-            //     break;
-            // case 5:
-            //     myList = deleteAtHead(myList);
-            //     break;
+            case 3:
+                myList = insertAtPosition(myList);
+                break;
+            case 4:
+                printLinkedList(myList);
+                break;
+            case 5:
+                myList = deleteAtHead(myList);
+                break;
             // case 6:
             //     myList = deleteAtEnd(myList);
             //     break;
