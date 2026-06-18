@@ -225,6 +225,38 @@ DLL* deleteByPosition (DLL* list)
     return list;
 }
 
+DLL* reverseDLL(DLL* list)
+{
+    if ((list -> size) == 0){
+        cout << "List is empty" << endl;
+        return list;
+    }
+
+    if ((list -> size) == 1){
+        cout << "List is just 1 element" << endl;
+        return list;
+    }
+
+    Node* curr = list -> head;
+    Node* temp = curr -> prev;
+
+    while (curr){
+        temp = curr -> prev;
+
+        curr -> prev = curr -> next;
+        curr -> next = temp;
+
+        // we go forward like this as we changed the pointers now
+        curr = curr -> prev;
+    }
+
+    temp = list -> head;
+    list -> head = list -> tail;
+    list -> tail = temp;
+
+    return list;
+}
+
 int main(void)
 {
     DLL* myList = new DLL();
@@ -237,6 +269,7 @@ int main(void)
         cout << "1. Insert at the head\n2. Insert at the end\n3. Insert at a position\n";
         cout << "4. Print the current linked List\n";
         cout << "5. Delete from the head\n6. Delete from the end\n7. Delete at a position\n";
+        cout << "8. Reverse the DLL\n";
 
         cin >> choice;
 
@@ -268,6 +301,9 @@ int main(void)
                 break;
             case 7:
                 myList = deleteByPosition(myList);
+                break;
+            case 8:
+                myList = reverseDLL(myList);
                 break;
             default:
                 cout << "Wrong choice entered, please re-enter\n";
